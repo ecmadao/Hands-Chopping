@@ -45,15 +45,26 @@ def print_goods(search_result):
 
 def open_detail_page(filtered_goods):
     print(colorful_text('which do you prefer? type it\'s index', Fore.MAGENTA))
-    index = input('goods index: ')
-    result_goods = filter(get_target_goods(int(index)), filtered_goods)
-    if len(list(result_goods)):
-        webbrowser.open_new(list(result_goods)[0]["url"])
-    else:
-        error_message('no such index')
+    print(colorful_text('if many, use \',\' to split them'))
+    try:
+        index = input('goods index: ')
+        result_goods = filter(get_target_goods(index.split(',')), filtered_goods)
+        goods_list = [goods for goods in result_goods]
+
+        if len(goods_list):
+            for goods in goods_list:
+                goods_url = goods["url"]
+                if goods_url[0] == '/':
+                    goods_url = 'https:{}'.format(goods_url)
+                webbrowser.open_new(goods_url)
+        else:
+            error_message('no such index')
+            open_detail_page(filtered_goods)
+    except KeyboardInterrupt:
+        error_message('exit')
 
 
-def get_target_goods(index):
+def get_target_goods(indexs):
     def filter_goods(goods):
-        return goods["index"] == index
+        return str(goods["index"]) in indexs
     return filter_goods

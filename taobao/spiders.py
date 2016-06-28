@@ -33,6 +33,12 @@ class GoodsListSpider(object):
             response = request.urlopen(req).read().decode('UTF-8')
             re_result = re.findall(r'g_page_config\s*=\s*(.*);', str(response))[0]
             json_result = json.loads(re_result)
+
+            # with open('./taobao/taobao.html', encoding='utf-8') as f:
+            #     response = f.read()
+            # re_result = re.findall(r'g_page_config\s*=\s*(.*);', str(response))[0]
+            # json_result = json.loads(re_result)
+
             if json_result['mods']['itemlist']['data']['auctions']:
                 search_result = json_result['mods']['itemlist']['data']['auctions']
             else:
