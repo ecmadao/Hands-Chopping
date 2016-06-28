@@ -11,12 +11,17 @@ Options:
 
 Examples:
     entry.py 移动硬盘
+    entry.py 硬盘-东芝
 """
 from docopt import docopt
 from taobao import entry
 
 
 def get_input():
+    """get input from comment line
+
+    :return: None
+    """
     arguments = docopt(__doc__, version="beta 0.1")
     goods_keywords = arguments['<goods>'].split('-')
     entry.get_goods(goods_keywords)

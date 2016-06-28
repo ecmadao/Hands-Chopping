@@ -1,4 +1,7 @@
 #!usr/bin/env python
+"""
+to search in taobao by keywords
+"""
 
 import re
 import ssl
@@ -27,6 +30,10 @@ class GoodsListSpider(object):
         }
 
     def fetch_goods(self):
+        """taobao spider
+
+        :return: None or search result
+        """
         search_result = None
         try:
             req = request.Request(self.url, headers=self.headers)
