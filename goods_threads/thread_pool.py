@@ -8,9 +8,9 @@ lock = threading.Lock()
 all_goods = []
 
 
-def build_thread(keywords):
+def build_thread(keywords, webs=WEBS):
     global all_goods
-    for web in WEBS:
+    for web in webs:
         goods_thread = GoodsThread(lock, all_goods, keywords, web)
         threads.append(goods_thread)
         goods_thread.start()

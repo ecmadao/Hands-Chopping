@@ -6,10 +6,8 @@ from utils.message import colorful_text, error_message
 from goods_threads import thread_pool
 
 
-# TABLE_TITLE = ('编号', '简介', '价格', '邮费', '购买人数', '所属')
-# ITEM_KEY = ('index', 'intro', 'price', 'delivery', 'sales', 'belong')
-TABLE_TITLE = ('简介', '价格', '邮费', '购买人数', '所属')
-ITEM_KEY = ('intro', 'price', 'delivery', 'sales', 'belong')
+TABLE_TITLE = ('编号', '简介', '价格', '邮费', '购买人数', '所属')
+ITEM_KEY = ('index', 'intro', 'price', 'delivery', 'sales', 'belong')
 
 
 def get_goods(goods_keywords):
@@ -31,11 +29,13 @@ def print_goods(search_result):
     :return: None
     """
     goods_table = PrettyTable(TABLE_TITLE)
-    for goods in search_result:
+    for index, goods in enumerate(search_result):
+        goods["index"] = index
         goods_row = [goods[item] for item in ITEM_KEY]
         goods_table.add_row(goods_row)
     print(colorful_text('ready to hands chopping?', Fore.CYAN))
     print(goods_table)
+    open_detail_page(search_result)
 
 
 def open_detail_page(filtered_goods):

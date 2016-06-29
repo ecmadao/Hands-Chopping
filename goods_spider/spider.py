@@ -42,7 +42,7 @@ class GoodsListSpider(object):
         driver = webdriver.PhantomJS()
         driver.set_window_size(1024, 2000)
         driver.implicitly_wait(20)
-        print(colorful_text('driver fetch page....', color=Fore.RED))
+        print(colorful_text('open jd search page....', color=Fore.RED))
         driver.get(self.url)
         return self.fetch_jd_goods(driver.page_source)
 
@@ -51,7 +51,6 @@ class GoodsListSpider(object):
         print(colorful_text('fetching goods from jd....', color=Fore.RED))
         search_result = None
         try:
-
             soup = BeautifulSoup(response, 'lxml')
             j_goods_list = soup.find('div', id="J_goodsList").find_all('li', attrs={"class": "gl-item"})
 
@@ -67,7 +66,7 @@ class GoodsListSpider(object):
                             'delivery': 'none',
                             'sales': j_goods_item.find('div', attrs={"class": "p-commit"})
                             .find('strong').find('a').string.strip(),
-                            'belong': 'jd'
+                            'belong': colorful_text('京东', Fore.CYAN)
                         }
                         search_result.append(j_goods)
             else:
