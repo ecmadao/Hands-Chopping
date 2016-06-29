@@ -7,6 +7,7 @@ import re
 import ssl
 import json
 from datetime import date
+from colorama import Fore
 from urllib import request, error, parse
 from utils import message
 
@@ -35,6 +36,7 @@ class GoodsListSpider(object):
         :return: None or search result
         """
         search_result = None
+        print(message.colorful_text('fetching goods from taobao....', color=Fore.MAGENTA))
         try:
             req = request.Request(self.url, headers=self.headers)
             response = request.urlopen(req).read().decode('UTF-8')
