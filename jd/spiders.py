@@ -37,9 +37,6 @@ class GoodsListSpider(object):
         print(message.colorful_text('fetching goods from jd....', color=Fore.RED))
         search_result = None
         try:
-            # print(self.url)
-            # req = request.Request(self.url, headers=self.headers)
-            # response = request.urlopen(req).read().decode('UTF-8')
 
             soup = BeautifulSoup(response, 'lxml')
             j_goods_list = soup.find('div', id="J_goodsList").find_all('li', attrs={"class": "gl-item"})
@@ -48,8 +45,6 @@ class GoodsListSpider(object):
                 search_result = []
                 for index, j_goods_item in enumerate(j_goods_list):
                     if j_goods_item.find('div', attrs={"class": "p-img"}):
-                        # if index > 12:
-                            # print(j_goods_item)
                         j_goods = {
                             'index': index,
                             'url': j_goods_item.find('div', attrs={"class": "p-img"}).a.attrs["href"],

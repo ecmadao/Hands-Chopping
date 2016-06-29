@@ -34,4 +34,3 @@ def print_goods(search_result):
         goods_table.add_row(goods_row)
     print(colorful_text('ready to hands chopping?', Fore.CYAN))
     print(goods_table)
-    # open_detail_page(filtered_goods)

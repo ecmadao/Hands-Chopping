@@ -14,8 +14,9 @@ Examples:
     entry.py 硬盘-东芝
 """
 from docopt import docopt
-import taobao
-from jd import entry
+# from taobao import entry
+# from jd import entry
+from goods_data import entry
 
 
 def get_input():
