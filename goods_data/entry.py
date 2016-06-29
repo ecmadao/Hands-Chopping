@@ -1,64 +1,45 @@
 #!usr/bin/env python
 """
-get input argument & search from taobao
+get data and print table package
 """
-
-from colorama import Fore
 import webbrowser
+from colorama import Fore
 from prettytable import PrettyTable
-from .spiders import GoodsListSpider
 from utils.message import colorful_text, error_message
+from goods_threads import thread_pool
+
 
 TABLE_TITLE = ('编号', '简介', '价格', '邮费', '购买人数', '所属')
 ITEM_KEY = ('index', 'intro', 'price', 'delivery', 'sales', 'belong')
 
 
-def get_goods(goods_keywords):
-    """get keywords and search in taobao
+def get_goods(goods_keywords, webs):
+    """get keywords and search
 
     :param goods_keywords: input keywords
+    :param webs: webs which will be search
     :return: None
     """
     assert isinstance(goods_keywords, list)
     key_words = '+'.join(goods_keywords)
-    goods_list_spider = GoodsListSpider(key_words)
-    search_result = goods_list_spider.fetch_goods()
-    if search_result:
-        print_goods(search_result)
+    thread_pool.build_thread(key_words, webs=webs)
+    print_goods(thread_pool.export_date())
 
 
 def print_goods(search_result):
     """use validate search result to print a table
 
-    :param search_result: search result in taobao
+    :param search_result: search result in taobao and jd
     :return: None
     """
     goods_table = PrettyTable(TABLE_TITLE)
-    filtered_goods = filter_target_data(search_result)
-    for goods in filtered_goods:
+    for index, goods in enumerate(search_result):
+        goods["index"] = index
         goods_row = [goods[item] for item in ITEM_KEY]
         goods_table.add_row(goods_row)
     print(colorful_text('ready to hands chopping?', Fore.CYAN))
     print(goods_table)
-    open_detail_page(filtered_goods)
-
-
-def filter_target_data(search_result):
-    """get target data in search result
-
-    :param search_result
-    :return: validate data list
-    """
-    return [{
-            'index': index,
-            'intro': result["raw_title"],
-            'price': result["view_price"],
-            'delivery': colorful_text(result["view_fee"], Fore.RED)
-            if float(result["view_fee"]) > 0 else result["view_fee"],
-            'sales': result["view_sales"],
-            'belong': colorful_text("天猫", Fore.CYAN) if result["shopcard"]["isTmall"] else "淘宝",
-            'url': result["detail_url"]
-            } for index, result in enumerate(search_result)]
+    open_detail_page(search_result)
 
 
 def open_detail_page(filtered_goods):
@@ -70,6 +51,7 @@ def open_detail_page(filtered_goods):
     """
     print(colorful_text('which do you prefer? type it\'s index', Fore.MAGENTA))
     print(colorful_text('if many, use \',\' to split them', Fore.MAGENTA))
+    print(colorful_text('use \'control + c\' to exit.', Fore.RED))
     try:
         index = input('goods index: ')
         result_goods = filter(get_target_goods(index.split(',')), filtered_goods)
