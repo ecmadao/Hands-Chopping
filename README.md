@@ -5,8 +5,11 @@
 ### Rely
 
 python 3.5+
+
 [prettytable](https://pypi.python.org/pypi/PrettyTable)
+
 [bs4](https://pypi.python.org/pypi/beautifulsoup4)
+
 [selenium](www.seleniumhq.org/)
 
 ### Install
