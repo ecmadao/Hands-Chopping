@@ -5,8 +5,8 @@ get data and print table package
 import webbrowser
 from colorama import Fore
 from prettytable import PrettyTable
-from utils.message import colorful_text, error_message
-from goods_threads import thread_pool
+from ..utils.message import colorful_text, error_message
+from ..goods_threads import thread_pool
 
 
 TABLE_TITLE = ('编号', '简介', '价格', '邮费', '购买人数', '所属')

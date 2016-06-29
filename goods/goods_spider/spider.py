@@ -7,7 +7,7 @@ from urllib import request, error, parse
 from colorama import Fore
 from bs4 import BeautifulSoup
 from selenium import webdriver
-from utils.message import colorful_text, error_message
+from ..utils.message import colorful_text, error_message
 
 ssl._create_default_https_context = ssl._create_unverified_context
 

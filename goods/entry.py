@@ -3,7 +3,7 @@
 """
 
 Usage:
-    entry.py [-j | -t] <goods>
+    goods [-j | -t] <goods>
 
 Options:
     -h --help  显示帮助菜单
@@ -12,12 +12,12 @@ Options:
     -t         淘宝
 
 Examples:
-    entry.py 移动硬盘
-    entry.py 硬盘-东芝
+    goods 移动硬盘
+    goods 硬盘-东芝
 """
 from docopt import docopt
-from goods_data import entry
-from utils.const_value import WEB_NAME
+from .goods_data import entry
+from .utils.const_value import WEB_NAME
 
 
 def get_input():
@@ -31,7 +31,3 @@ def get_input():
     if not len(webs):
         webs = WEB_NAME.values()
     entry.get_goods(goods_keywords, webs)
-
-
-if __name__ == '__main__':
-    get_input()

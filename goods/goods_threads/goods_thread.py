@@ -1,8 +1,8 @@
 #!usr/bin/env python
 
 import threading
-from goods_spider.spider import GoodsListSpider
-from utils.const_value import WEB_NAME
+from ..goods_spider.spider import GoodsListSpider
+from ..utils.const_value import WEB_NAME
 
 
 class GoodsThread(threading.Thread):

@@ -1,0 +1,5 @@
+docopt
+prettytable
+colorama
+bs4
+selenium
