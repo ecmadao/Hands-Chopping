@@ -34,9 +34,9 @@ $ sudo python3 setup.py install
 $ goods [想要搜索的商品关键字，各个关键字之间使用-链接]
 # example
 $ goods psp
-$ goods psp-港版
-$ goods -j psp # 仅搜索京东
-$ goods -t psp # 仅搜索淘宝
+# $ goods psp-港版
+# $ goods -j psp 仅搜索京东
+# $ goods -t psp 仅搜索淘宝
 ```
 
 ![search psp](./example.png)

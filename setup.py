@@ -4,6 +4,7 @@ from goods import __version__
 setup(
     name='hands_chopping',
     version=__version__,
+    keywords=('taobao', 'jingdong', 'hands chopping', 'spider'),
     description='Search goods in shopping web, It\' time to chop your hands.',
     author='ecmadao',
     author_email='wlec@outlook.com',
@@ -25,6 +26,12 @@ setup(
     classifiers=[
          'Environment :: Console',
          'Programming Language :: Python',
+         'Programming Language :: Python :: 3',
+         'Programming Language :: Python :: 3.1',
+         'Programming Language :: Python :: 3.2',
+         'Programming Language :: Python :: 3.3',
+         'Programming Language :: Python :: 3.4',
+         'Programming Language :: Python :: 3.5',
          'Programming Language :: Python :: 3.5',
          'Programming Language :: Python :: Implementation :: CPython'
     ]
