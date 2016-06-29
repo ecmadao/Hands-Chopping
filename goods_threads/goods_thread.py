@@ -2,6 +2,7 @@
 
 import threading
 from goods_spider.spider import GoodsListSpider
+from utils.const_value import WEB_NAME
 
 
 class GoodsThread(threading.Thread):
@@ -14,7 +15,7 @@ class GoodsThread(threading.Thread):
 
     def run(self):
         goods_list_spider = GoodsListSpider(self.keywords)
-        if self.web in goods_list_spider.webs:
+        if self.web in WEB_NAME.values():
             result = goods_list_spider.fetch_goods()[self.web]()
             if result:
                 self.append_data(result)

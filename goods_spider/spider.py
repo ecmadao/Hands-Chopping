@@ -9,20 +9,17 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from utils.message import colorful_text, error_message
 
-
 ssl._create_default_https_context = ssl._create_unverified_context
 
 JD_SEARCH = 'https://search.jd.com/Search?keyword={}&enc=utf-8&suggest=1.def.0&wq={}'
 TAOBAO_SEARCH = 'https://s.taobao.com/search?q={keywords}&imgfile=&js=1' \
                 '&stats_click=search_radio_all%3A1&initiative_id=staobaoz_{date}&ie=utf8'
-WEBS = ('jd', 'taobao')
 
 
 class GoodsListSpider(object):
     def __init__(self, keywords):
         keywords = parse.quote(keywords)
         self.keywords = keywords
-        self.webs = WEBS
         self.headers = {
             'Connection': 'Keep-Alive',
             'Accept': 'text/html, application/xhtml+xml, */*',
@@ -32,6 +29,10 @@ class GoodsListSpider(object):
         self.url = None
 
     def fetch_goods(self):
+        """web spider object creator
+
+        :return: A object which contains different web spider
+        """
         return {
             'jd': self.jd_spider,
             'taobao': self.taobao_spider

@@ -1,4 +1,7 @@
 #!usr/bin/env python
+"""
+get data and print table package
+"""
 import webbrowser
 from colorama import Fore
 from prettytable import PrettyTable
@@ -10,15 +13,16 @@ TABLE_TITLE = ('编号', '简介', '价格', '邮费', '购买人数', '所属')
 ITEM_KEY = ('index', 'intro', 'price', 'delivery', 'sales', 'belong')
 
 
-def get_goods(goods_keywords):
+def get_goods(goods_keywords, webs):
     """get keywords and search
 
     :param goods_keywords: input keywords
+    :param webs: webs which will be search
     :return: None
     """
     assert isinstance(goods_keywords, list)
     key_words = '+'.join(goods_keywords)
-    thread_pool.build_thread(key_words)
+    thread_pool.build_thread(key_words, webs=webs)
     print_goods(thread_pool.export_date())
 
 
@@ -47,6 +51,7 @@ def open_detail_page(filtered_goods):
     """
     print(colorful_text('which do you prefer? type it\'s index', Fore.MAGENTA))
     print(colorful_text('if many, use \',\' to split them', Fore.MAGENTA))
+    print(colorful_text('use \'control + c\' to exit.', Fore.RED))
     try:
         index = input('goods index: ')
         result_goods = filter(get_target_goods(index.split(',')), filtered_goods)
