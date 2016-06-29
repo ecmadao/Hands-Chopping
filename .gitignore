@@ -2,3 +2,9 @@
 *.pyc
 
 ghostdriver.log
+
+build/
+
+hands_chopping.egg-info/
+
+dist/
