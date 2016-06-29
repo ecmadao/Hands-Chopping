@@ -24,6 +24,8 @@ $ goods [想要搜索的商品关键字，各个关键字之间使用-链接]
 # example
 $ goods psp
 # $ goods psp-港版
+# $ goods -j psp 仅搜索京东
+# $ goods -t psp 仅搜索淘宝
 ```
 
 ![search psp](./example.png)
@@ -42,6 +44,7 @@ Options:
 
 Examples:
     goods 移动硬盘
+    goods -j 移动硬盘
     goods 硬盘-东芝
 ```
 
