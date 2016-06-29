@@ -17,7 +17,7 @@ def get_goods(goods_keywords):
     assert isinstance(goods_keywords, list)
     key_words = '+'.join(goods_keywords)
     goods_list_spider = GoodsListSpider(key_words)
-    search_result = goods_list_spider.fetch_jd_goods()
+    search_result = goods_list_spider.open_in_selenium()
     if search_result:
         print_goods(search_result)
 

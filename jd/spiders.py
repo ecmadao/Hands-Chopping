@@ -2,8 +2,8 @@ import ssl
 from urllib import request, error, parse
 from colorama import Fore
 from bs4 import BeautifulSoup
+from selenium import webdriver
 from utils import message
-from pprint import pprint
 
 JD_SEARCH = 'https://search.jd.com/Search?keyword={}&enc=utf-8&suggest=1.def.0&wq={}'
 
@@ -24,47 +24,38 @@ class GoodsListSpider(object):
             'GET': self.url
         }
 
-    def fetch_jd_goods(self):
+    def open_in_selenium(self):
+        driver = webdriver.PhantomJS()
+        driver.set_window_size(1024, 2000)
+        driver.implicitly_wait(20)
+        print(message.colorful_text('driver fetch page....', color=Fore.RED))
+        driver.get(self.url)
+        return self.fetch_jd_goods(driver.page_source)
+
+    @staticmethod
+    def fetch_jd_goods(response):
         print(message.colorful_text('fetching goods from jd....', color=Fore.RED))
         search_result = None
         try:
-            print(self.url)
-            req = request.Request(self.url, headers=self.headers)
-            response = request.urlopen(req).read().decode('UTF-8')
-
-            # with open('./jd/jd_skirt.htm', encoding='utf-8') as f:
-            #     response = f.read()
+            # print(self.url)
+            # req = request.Request(self.url, headers=self.headers)
+            # response = request.urlopen(req).read().decode('UTF-8')
 
             soup = BeautifulSoup(response, 'lxml')
             j_goods_list = soup.find('div', id="J_goodsList").find_all('li', attrs={"class": "gl-item"})
-            # with open('./jd/jd_html.html', 'w') as f:
-            #     f.write(j_goods_list)
-            pprint(j_goods_list)
+
             if j_goods_list:
-                # print(len(j_goods_list))
                 search_result = []
                 for index, j_goods_item in enumerate(j_goods_list):
                     if j_goods_item.find('div', attrs={"class": "p-img"}):
-                        if index == 4:
-                            print(j_goods_item)
-                            # print(index)
-                            # print(j_goods_item.find('div', attrs={"class": "p-img"}).a.attrs["href"])
-                            # print(j_goods_item.find('div', attrs={"class": "p-name"}).a.attrs["title"])
-                            # print(j_goods_item.find('div', attrs={"class": "p-price"})
-                            #       .find('strong').attrs["data-price"])
-                            # p_commint = j_goods_item.find('div', attrs={"class": "p-commit"})
-                            # print(p_commint)
-                            # print(p_commint.find('strong'))
-                            # print(p_commint.find('strong').find('a'))
-                            # print(p_commint.find('strong').find('a').string.strip())
+                        # if index > 12:
+                            # print(j_goods_item)
                         j_goods = {
                             'index': index,
                             'url': j_goods_item.find('div', attrs={"class": "p-img"}).a.attrs["href"],
                             'intro': j_goods_item.find('div', attrs={"class": "p-name"}).a.attrs["title"],
                             'price': j_goods_item.find('div', attrs={"class": "p-price"})
-                            .find('strong').attrs["data-price"]
-                            if j_goods_item.find('div', attrs={"class": "p-price"})
-                            .find('strong').attrs["data-price"] else '0.00',
+                            .find('strong').find('i').string.strip(),
                             'delivery': 'none',
                             'sales': j_goods_item.find('div', attrs={"class": "p-commit"})
                             .find('strong').find('a').string.strip(),
