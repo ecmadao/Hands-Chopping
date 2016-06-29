@@ -14,6 +14,14 @@ python 3.5+
 
 ### Install
 
+**通过pip3**
+
+```bash
+$ sudo pip3 install hands_chopping
+```
+
+**本地安装**
+
 ```bash
 $ git clone https://github.com/ecmadao/Hands-Chopping
 $ cd Hands-Chopping-master
