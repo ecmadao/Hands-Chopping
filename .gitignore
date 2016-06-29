@@ -8,3 +8,5 @@ build/
 hands_chopping.egg-info/
 
 dist/
+__pycache__/
+goods/__pycache__/
