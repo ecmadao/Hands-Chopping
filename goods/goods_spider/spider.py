@@ -42,7 +42,7 @@ class GoodsListSpider(object):
         self.url = JD_SEARCH.format(self.keywords, self.keywords)
         driver = webdriver.PhantomJS()
         driver.set_window_size(1024, 2000)
-        driver.implicitly_wait(20)
+        driver.implicitly_wait(7)
         print(colorful_text('open jd search page....', color=Fore.RED))
         driver.get(self.url)
         return self.fetch_jd_goods(driver.page_source)

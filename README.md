@@ -1,4 +1,4 @@
-## Hands-Chopping 剁手党
+## [Hands-Chopping](https://pypi.python.org/pypi/hands_chopping) 剁手党
 
 [![Build Status](https://travis-ci.org/ecmadao/Hands-Chopping.svg?branch=master)](https://travis-ci.org/ecmadao/Hands-Chopping)
 
