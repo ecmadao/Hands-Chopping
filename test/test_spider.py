@@ -16,18 +16,22 @@ def get_goods():
     assert random_index < len(GOODS)
     goods = GOODS[random_index]
     assert goods in GOODS
-    return goods
+    return convert_keywords(goods)
 
 
 def test_taobao():
-    goods_list_spider = GoodsListSpider(get_goods())
+    goods = get_goods()
+    print(goods)
+    goods_list_spider = GoodsListSpider(goods)
     result = goods_list_spider.fetch_goods()['taobao']()
     assert result is not None
     assert len(result) > 1
 
 
 def test_jd():
-    goods_list_spider = GoodsListSpider(get_goods())
+    goods = get_goods()
+    print(goods)
+    goods_list_spider = GoodsListSpider(goods)
     result = goods_list_spider.fetch_goods()['jd']()
     assert result is not None
     assert len(result) > 10
