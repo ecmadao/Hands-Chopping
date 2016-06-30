@@ -1,5 +1,7 @@
 ## Hands-Chopping 剁手党
 
+[![Build Status](https://travis-ci.org/ecmadao/Hands-Chopping.svg?branch=master)](https://travis-ci.org/ecmadao/Hands-Chopping)
+
 作为剁手党，必须得有个方便的工具来愉快的剁手~
 
 ### Rely
@@ -66,6 +68,6 @@ Examples:
 
 ### TODO
 
-- 测试得加上，目前CI一直爆。但仅仅因为没有测试，实际没有影响
+- ~~测试得加上，目前CI一直爆。但仅仅因为没有测试，实际没有影响~~
 - 商品排序(按照金额等)
 - 现阶段只抓取了第一页的商品。之后考虑抓取多页
