@@ -3,6 +3,7 @@
 get data and print table package
 """
 import webbrowser
+from operator import itemgetter
 from colorama import Fore
 from prettytable import PrettyTable
 from ..utils.message import colorful_text, error_message
@@ -32,6 +33,8 @@ def print_goods(search_result):
     :param search_result: search result in taobao and jd
     :return: None
     """
+    search_result = sort_by_money(search_result)
+
     goods_table = PrettyTable(TABLE_TITLE)
     for index, goods in enumerate(search_result):
         goods["index"] = index
@@ -40,6 +43,11 @@ def print_goods(search_result):
     print(colorful_text('ready to hands chopping?', Fore.CYAN))
     print(goods_table)
     open_detail_page(search_result)
+
+
+def sort_by_money(search_result):
+    result = sorted(search_result, key=itemgetter('sales', 'price'), reverse=True)
+    return result
 
 
 def open_detail_page(filtered_goods):

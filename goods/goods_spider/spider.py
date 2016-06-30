@@ -62,11 +62,11 @@ class GoodsListSpider(object):
                         j_goods = {
                             'url': j_goods_item.find('div', attrs={"class": "p-img"}).a.attrs["href"],
                             'intro': j_goods_item.find('div', attrs={"class": "p-name"}).a.attrs["title"],
-                            'price': j_goods_item.find('div', attrs={"class": "p-price"})
-                            .find('strong').find('i').string.strip(),
+                            'price': float(j_goods_item.find('div', attrs={"class": "p-price"})
+                                           .find('strong').find('i').string.strip()),
                             'delivery': 'none',
-                            'sales': j_goods_item.find('div', attrs={"class": "p-commit"})
-                            .find('strong').find('a').string.strip(),
+                            'sales': int(j_goods_item.find('div', attrs={"class": "p-commit"})
+                            .find('strong').find('a').string.strip()),
                             'belong': colorful_text('京东', Fore.CYAN)
                         }
                         search_result.append(j_goods)
@@ -102,7 +102,7 @@ class GoodsListSpider(object):
             re_result = re.findall(r'g_page_config\s*=\s*(.*);', str(response))[0]
             json_result = json.loads(re_result)
 
-            # with open('./taobao/taobao.html', encoding='utf-8') as f:
+            # with open('./goods/goods_spider/taobao.html', encoding='utf-8') as f:
             #     response = f.read()
             # re_result = re.findall(r'g_page_config\s*=\s*(.*);', str(response))[0]
             # json_result = json.loads(re_result)
@@ -127,10 +127,10 @@ class GoodsListSpider(object):
         """
         return [{
                 'intro': result["raw_title"],
-                'price': result["view_price"],
+                'price': float(result["view_price"]),
                 'delivery': colorful_text(result["view_fee"], Fore.RED)
                 if float(result["view_fee"]) > 0 else result["view_fee"],
-                'sales': result["view_sales"],
+                'sales': int(result["view_sales"].split('人')[0]),
                 'belong': colorful_text("天猫", Fore.CYAN) if result["shopcard"]["isTmall"] else "淘宝",
                 'url': result["detail_url"]
                 } for result in search_result]
