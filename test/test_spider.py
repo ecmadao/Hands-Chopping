@@ -1,0 +1,33 @@
+import random
+from goods.goods_spider.spider import GoodsListSpider
+
+GOODS = ('冰与火之歌', '权力的游戏', '移动硬盘-东芝', '海贼王', 'python', 'psv', 'ps4-港版', 'iphone6-32G-港版')
+
+
+def convert_keywords(keywords):
+    goods_keywords = keywords.split('-')
+    assert isinstance(goods_keywords, list)
+    key_words = '+'.join(goods_keywords)
+    return key_words
+
+
+def get_goods():
+    random_index = random.randrange(0, len(GOODS))
+    assert random_index < len(GOODS)
+    goods = GOODS[random_index]
+    assert goods in GOODS
+    return goods
+
+
+def test_taobao():
+    goods_list_spider = GoodsListSpider(get_goods())
+    result = goods_list_spider.fetch_goods()['taobao']()
+    assert result is not None
+    assert len(result) > 1
+
+
+def test_jd():
+    goods_list_spider = GoodsListSpider(get_goods())
+    result = goods_list_spider.fetch_goods()['jd']()
+    assert result is not None
+    assert len(result) > 10
