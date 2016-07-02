@@ -21,7 +21,10 @@ def get_goods(goods_keywords, webs):
     :param webs: webs which will be search
     :return: None
     """
-    assert isinstance(goods_keywords, list)
+    try:
+        assert isinstance(goods_keywords, list)
+    except AssertionError:
+        error_message('expect to receive a list')
     key_words = '+'.join(goods_keywords)
     thread_pool.build_thread(key_words, webs=webs)
     print_goods(thread_pool.export_date())
