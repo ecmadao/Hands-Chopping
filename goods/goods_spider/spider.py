@@ -125,12 +125,14 @@ class GoodsListSpider(object):
         :param search_result
         :return: validate data list
         """
+
         return [{
                 'intro': result["raw_title"],
                 'price': float(result["view_price"]),
                 'delivery': colorful_text(result["view_fee"], Fore.RED)
                 if float(result["view_fee"]) > 0 else result["view_fee"],
                 'sales': int(result["view_sales"].split('人')[0]),
-                'belong': colorful_text("天猫", Fore.CYAN) if result["shopcard"]["isTmall"] else "淘宝",
+                'belong': colorful_text("天猫", Fore.CYAN)
+                if result["shopcard"] and result["shopcard"].get('isTmall', False) else "淘宝",
                 'url': result["detail_url"]
                 } for result in search_result]
