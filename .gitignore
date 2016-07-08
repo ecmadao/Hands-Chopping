@@ -12,3 +12,4 @@ __pycache__/
 goods/__pycache__/
 
 README.txt
+goods/goods_spider/taobao.html

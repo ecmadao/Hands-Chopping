@@ -1,4 +1,4 @@
-## Hands-Chopping 剁手党
+## [Hands-Chopping](https://pypi.python.org/pypi/hands_chopping) 剁手党
 
 [![Build Status](https://travis-ci.org/ecmadao/Hands-Chopping.svg?branch=master)](https://travis-ci.org/ecmadao/Hands-Chopping)
 
@@ -68,6 +68,13 @@ Examples:
 
 ### TODO
 
-- ~~测试得加上，目前CI一直爆。但仅仅因为没有测试，实际没有影响~~
-- 商品排序(按照金额等)
-- 现阶段只抓取了第一页的商品。之后考虑抓取多页
+- [x] ~~测试得加上，目前CI一直爆。但仅仅因为没有测试，实际没有影响~~
+- [ ] 商品排序(按照金额等)
+- [ ] 现阶段只抓取了第一页的商品。之后考虑抓取多页
+- [ ] more unittest
+- [ ] 容错
+  - [ ] 没有数据
+  - [ ] 数据结构有变
+- [ ] 更多配置
+  - [ ] 爬取速度
+  - [ ] 爬取页数
