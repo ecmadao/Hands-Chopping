@@ -1,6 +1,7 @@
 #!usr/bin/env python
 
 WEB_NAME = {
-    '-j': 'jd',
-    '-t': 'taobao'
+    'jd': ('jd'),
+    'tb': ('taobao'),
+    'all': ('jd', 'taobao')
 }

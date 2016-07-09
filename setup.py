@@ -16,7 +16,8 @@ setup(
     install_requires=[
         'prettytable',
         'bs4',
-        'selenium'
+        'selenium',
+        'Click'
     ],
     entry_points={
         'console_scripts': ['goods=run:get_input']

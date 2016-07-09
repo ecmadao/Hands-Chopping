@@ -1,4 +1,4 @@
-docopt
+click
 prettytable
 colorama
 bs4
