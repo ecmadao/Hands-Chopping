@@ -17,14 +17,17 @@ from goods.entry import entry, WEB_NAME
 @click.command()
 @click.option('--goods', prompt='what do you wanna search')
 @click.option('--site', type=click.Choice(['all', 'jd', 'tb']), default='all')
-def get_input(goods, site):
+def get_train_args(goods, site):
     """get input from comment line
 
+    :param goods
+    :param site
     :return: None
     """
     goods_keywords = goods.split(' ')
     webs = WEB_NAME.get(site, WEB_NAME['all'])
     entry.get_goods(goods_keywords, webs)
 
+
 if __name__ == '__main__':
-    get_input()
+    get_train_args()
