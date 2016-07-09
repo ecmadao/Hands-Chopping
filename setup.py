@@ -20,7 +20,7 @@ setup(
         'Click'
     ],
     entry_points={
-        'console_scripts': ['goods=run:get_train_args']
+        'console_scripts': ['goods=goods.__main__:main']
     },
     license='MIT',
     zip_safe=False,
