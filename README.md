@@ -55,6 +55,8 @@ Examples:
     $ goods
 ```
 
+![example](./example.png)
+
 ### Notes
 
 - 目前支持淘宝/京东的搜索
@@ -67,10 +69,10 @@ Examples:
 - [ ] 商品排序(按照金额等)
 - [ ] 现阶段只抓取了第一页的商品。之后考虑抓取多页
 - [ ] more unittest
-- [x] use click instead of docopt
+- [x] ~~use click instead of docopt~~
 - [ ] 容错
-  - [ ] 没有数据
-  - [ ] 数据结构有变
+- [ ] 没有数据
+- [ ] 数据结构有变
 - [ ] 更多配置
-  - [ ] 爬取速度
-  - [ ] 爬取页数
+- [ ] 爬取速度
+- [ ] 爬取页数
