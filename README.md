@@ -41,9 +41,19 @@ $ goods —site=jd # 仅搜索京东
 $ goods —site=tb # 仅搜索淘宝
 ```
 
+**local usage**
+
+不安装项目的情况下
+
+```bash
+# 下载项目文件，cd到项目根目录
+$ python3 run.py
+```
+
 ### Help
 
 ```python
+"""
 Usage:
     $ goods [--site= all | jd | tb]
 
@@ -53,6 +63,7 @@ Options:
 Examples:
     $ goods --site=jd
     $ goods
+"""
 ```
 
 ![example](./example.png)
