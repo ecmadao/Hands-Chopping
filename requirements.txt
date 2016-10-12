@@ -1,5 +1,5 @@
 click
 prettytable
 colorama
-bs4
 selenium
+fake_useragent

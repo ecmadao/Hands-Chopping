@@ -15,10 +15,10 @@ setup(
     platforms='any',
     install_requires=[
         'prettytable',
-        'bs4',
         'selenium',
         'click',
-        'colorama'
+        'colorama',
+        'fake_useragent'
     ],
     entry_points={
         'console_scripts': ['goods=goods.__main__:main']
@@ -26,9 +26,9 @@ setup(
     license='MIT',
     zip_safe=False,
     classifiers=[
-         'Environment :: Console',
-         'Programming Language :: Python',
-         'Programming Language :: Python :: 3.5',
-         'Programming Language :: Python :: Implementation :: CPython'
+        'Environment :: Console',
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: Implementation :: CPython'
     ]
 )

@@ -5,6 +5,8 @@ threads = []
 lock = threading.Lock()
 all_goods = []
 
+# TODO use class
+
 
 def build_thread(keywords, webs):
     """build thread by target web & put them into a thread pool

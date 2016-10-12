@@ -1,11 +1,11 @@
 #!usr/bin/env python
 
 import threading
-from ..goods_spider.spider import GoodsListSpider
-from ..utils.const_value import WEB_NAME
+from ..goods_spider.core import fetch_goods
 
 
 class GoodsThread(threading.Thread):
+
     def __init__(self, lock, all_goods, keywords, web):
         threading.Thread.__init__(self)
         self.lock = lock
@@ -14,11 +14,9 @@ class GoodsThread(threading.Thread):
         self.all_goods = all_goods
 
     def run(self):
-        goods_list_spider = GoodsListSpider(self.keywords)
-        if self.web in WEB_NAME.values():
-            result = goods_list_spider.fetch_goods()[self.web]()
-            if result:
-                self.append_data(result)
+        result = fetch_goods(self.keywords, self.web)
+        if result:
+            self.append_data(result)
 
     def append_data(self, data):
         self.lock.acquire()
