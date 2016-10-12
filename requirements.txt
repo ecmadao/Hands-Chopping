@@ -3,3 +3,4 @@ prettytable
 colorama
 selenium
 fake_useragent
+lxml

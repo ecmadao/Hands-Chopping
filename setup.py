@@ -18,7 +18,8 @@ setup(
         'selenium',
         'click',
         'colorama',
-        'fake_useragent'
+        'fake_useragent',
+        'lxml'
     ],
     entry_points={
         'console_scripts': ['goods=goods.__main__:main']
