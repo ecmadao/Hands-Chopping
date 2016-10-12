@@ -19,11 +19,9 @@ class JdSpider(object):
         driver.get(url)
         driver.implicitly_wait(randrange(1, 3))
         return self.__data_parser__(driver.page_source)
-        # return self.__data_parser__(None)
 
     def __data_parser__(self, data):
         html = etree.HTML(data)
-        # html = etree.parse('./goods/goods_spider/jd.html')
         search_results = []
         for li in html.xpath('//li[@class="gl-item"]'):
             try:

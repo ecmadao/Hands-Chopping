@@ -1,7 +1,8 @@
 import random
-from goods.goods_spider.spider import GoodsListSpider
+from goods.spider.core import GoodsListSpider
 
-GOODS = ('冰与火之歌', '权力的游戏', '移动硬盘-东芝', '海贼王', 'python', 'psv', 'ps4-港版', 'iphone6-32G-港版')
+GOODS = ('冰与火之歌', '权力的游戏', '移动硬盘-东芝', '海贼王',
+         'python', 'psv', 'ps4-港版', 'iphone6-32G-港版')
 
 
 def convert_keywords(keywords):

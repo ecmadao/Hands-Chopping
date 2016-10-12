@@ -1,7 +1,7 @@
 #!usr/bin/env python
 
 import threading
-from ..goods_spider.core import fetch_goods
+from ..spider.core import fetch_goods
 
 
 class GoodsThread(threading.Thread):
