@@ -1,17 +1,17 @@
 from selenium import webdriver
-from urllib import parse
 from lxml import etree
 from random import randrange
 from colorama import Fore
+from .base import BaseSpider
 from ..utils.message import error, notice, colorful_text
 
 JD_SEARCH = 'https://search.jd.com/Search?keyword={}&enc=utf-8&suggest=1.def.0&wq={}'
 
 
-class JdSpider(object):
+class JdSpider(BaseSpider):
 
     def __init__(self, keywords):
-        self.keywords = parse.quote(keywords)
+        super().__init__(keywords)
 
     def __fetch_goods__(self):
         url = JD_SEARCH.format(self.keywords, self.keywords)

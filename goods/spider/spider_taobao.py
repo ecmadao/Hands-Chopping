@@ -3,9 +3,10 @@ import re
 import json
 from datetime import date
 from colorama import Fore
-from urllib import request, error, parse
+from urllib import request, error
 from fake_useragent import UserAgent
 from ..utils.message import notice, error, colorful_text
+from .base import BaseSpider
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
@@ -13,22 +14,15 @@ TAOBAO_SEARCH = 'https://s.taobao.com/search?q={keywords}&imgfile=&js=1' \
                 '&stats_click=search_radio_all%3A1&initiative_id=staobaoz_{date}&ie=utf8'
 
 
-class TaobaoSpider(object):
+class TaobaoSpider(BaseSpider):
 
     def __init__(self, keywords):
-        self.keywords = parse.quote(keywords)
-        self.headers = {
-            'Connection': 'Keep-Alive',
-            'Accept': 'text/html, application/xhtml+xml, */*',
-            'Accept-Language': 'en-US,en;q=0.8,zh-Hans-CN;q=0.5,zh-Hans;q=0.3',
-            'User-Agent': None
-        }
+        super().__init__(keywords)
 
     def __fetch_goods__(self):
-        ua = UserAgent()
+        super().__fetch_goods__()
         search_date = ''.join(str(date.today()).split('-'))
         url = TAOBAO_SEARCH.format(keywords=self.keywords, date=search_date)
-        self.headers['User-Agent'] = ua.random
         req = request.Request(url, headers=self.headers)
         response = request.urlopen(req).read().decode('UTF-8')
 

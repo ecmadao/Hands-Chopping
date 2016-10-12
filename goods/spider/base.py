@@ -1,10 +1,11 @@
 from fake_useragent import UserAgent
+from urllib import parse
 
 
 class BaseSpider(object):
 
     def __init__(self, keywords):
-        self.keywords = keywords
+        self.keywords = parse.quote(keywords)
         self.headers = {
             'Connection': 'Keep-Alive',
             'Accept': 'text/html, application/xhtml+xml, */*',
@@ -12,7 +13,6 @@ class BaseSpider(object):
             'User-Agent': None
         }
 
-    @classmethod
     def __fetch_goods__(self):
         us = UserAgent()
         self.headers['User-Agent'] = us.random
