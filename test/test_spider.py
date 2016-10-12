@@ -1,5 +1,5 @@
 import random
-from goods.spider.core import GoodsListSpider
+from goods.spider.core import fetch_goods
 
 GOODS = ('冰与火之歌', '权力的游戏', '移动硬盘-东芝', '海贼王',
          'python', 'psv', 'ps4-港版', 'iphone6-32G-港版')
@@ -20,19 +20,19 @@ def test_get_goods():
     return convert_keywords(goods)
 
 
-# def test_taobao():
-#     goods = test_get_goods()
-#     print(goods)
-#     goods_list_spider = GoodsListSpider(goods)
-#     result = goods_list_spider.fetch_goods()['taobao']()
-#     assert result is not None
-#     assert len(result) > 1
-#
-#
-# def test_jd():
-#     goods = test_get_goods()
-#     print(goods)
-#     goods_list_spider = GoodsListSpider(goods)
-#     result = goods_list_spider.fetch_goods()['jd']()
-#     assert result is not None
-#     assert len(result) > 10
+def get_goods(keywords, web):
+    return fetch_goods(keywords, web)
+
+
+def test_taobao():
+    goods = test_get_goods()
+    result = fetch_goods(goods, 'taobao')
+    assert result is not None
+    assert len(result) > 1
+
+
+def test_jd():
+    goods = test_get_goods()
+    result = fetch_goods(goods, 'jd')
+    assert result is not None
+    assert len(result) > 1
