@@ -4,7 +4,7 @@ from ..utils.const_value import WEB_NAME
 
 
 def fetch_goods(keywords, web):
-    if web not in WEB_NAME.values():
+    if web not in WEB_NAME['all']:
         return []
     spider = {
         'jd': JdSpider,

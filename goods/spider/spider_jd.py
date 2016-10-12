@@ -1,4 +1,5 @@
 from selenium import webdriver
+from urllib import parse
 from lxml import etree
 from random import randrange
 from colorama import Fore
@@ -10,7 +11,7 @@ JD_SEARCH = 'https://search.jd.com/Search?keyword={}&enc=utf-8&suggest=1.def.0&w
 class JdSpider(object):
 
     def __init__(self, keywords):
-        self.keywords = keywords
+        self.keywords = parse.quote(keywords)
 
     def __fetch_goods__(self):
         url = JD_SEARCH.format(self.keywords, self.keywords)
@@ -18,6 +19,8 @@ class JdSpider(object):
         driver.set_window_size(1024, 2000)
         driver.get(url)
         driver.implicitly_wait(randrange(1, 3))
+        js = "document.body.scrollTop=100000"
+        driver.execute_script(js)
         return self.__data_parser__(driver.page_source)
 
     def __data_parser__(self, data):

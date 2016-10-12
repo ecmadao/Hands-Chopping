@@ -27,8 +27,6 @@ def get_goods(goods_keywords, webs):
         error_message('expect to receive a list')
     key_words = '+'.join(goods_keywords)
     threads.build(key_words, webs)
-    # core.build_thread(key_words, webs=webs)
-    # print_goods(core.export_date())
     print_goods(threads.goods)
 
 

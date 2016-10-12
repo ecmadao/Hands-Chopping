@@ -27,7 +27,6 @@ def main(goods, site):
     :return: None
     """
     goods_keywords = goods.split(' ')
-    # TODO 貌似不能多选
     webs = WEB_NAME.get(site, WEB_NAME['all'])
     entry.get_goods(goods_keywords, webs)
     exit(0)

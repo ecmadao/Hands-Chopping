@@ -6,12 +6,12 @@ from ..spider.core import fetch_goods
 
 class GoodsThread(threading.Thread):
 
-    def __init__(self, lock, all_goods, keywords, web):
+    def __init__(self, lock, goods, keywords, web):
         threading.Thread.__init__(self)
         self.lock = lock
         self.keywords = keywords
         self.web = web
-        self.all_goods = all_goods
+        self.goods = goods
 
     def run(self):
         result = fetch_goods(self.keywords, self.web)
@@ -20,5 +20,5 @@ class GoodsThread(threading.Thread):
 
     def append_data(self, data):
         self.lock.acquire()
-        self.all_goods.extend(data)
+        self.goods.extend(data)
         self.lock.release()
