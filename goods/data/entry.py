@@ -7,7 +7,7 @@ from operator import itemgetter
 from colorama import Fore
 from prettytable import PrettyTable
 from ..utils.message import colorful_text, error_message
-from ..threads import core
+from ..threads.core import threads
 
 
 TABLE_TITLE = ('编号', '简介', '价格', '邮费', '购买人数', '所属')
@@ -26,8 +26,10 @@ def get_goods(goods_keywords, webs):
     except AssertionError:
         error_message('expect to receive a list')
     key_words = '+'.join(goods_keywords)
-    core.build_thread(key_words, webs=webs)
-    print_goods(core.export_date())
+    threads.build(key_words, webs)
+    # core.build_thread(key_words, webs=webs)
+    # print_goods(core.export_date())
+    print_goods(threads.goods)
 
 
 def print_goods(search_result):
