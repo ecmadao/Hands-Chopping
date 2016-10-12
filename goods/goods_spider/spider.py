@@ -111,7 +111,7 @@ class GoodsListSpider(object):
                 search_result = json_result['mods']['itemlist']['data']['auctions']
             else:
                 error_message('没有搜索到商品')
-        except (error.HTTPError, error.URLError, error.ContentTooShortError):
+        except (error.HTTPError, error.URLError, error.ContentTooShortError) as e:
             error_message()
         except UnicodeEncodeError:
             error_message('encoding error')

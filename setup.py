@@ -17,7 +17,8 @@ setup(
         'prettytable',
         'bs4',
         'selenium',
-        'Click'
+        'click',
+        'colorama'
     ],
     entry_points={
         'console_scripts': ['goods=goods.__main__:main']
