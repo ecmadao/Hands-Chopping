@@ -12,7 +12,7 @@ Example:
 """
 
 import click
-from .goods_data import entry
+from .data import entry
 from .utils.const_value import WEB_NAME
 
 

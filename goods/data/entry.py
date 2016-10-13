@@ -7,7 +7,7 @@ from operator import itemgetter
 from colorama import Fore
 from prettytable import PrettyTable
 from ..utils.message import colorful_text, error_message
-from ..goods_threads import thread_pool
+from ..threads.core import threads
 
 
 TABLE_TITLE = ('编号', '简介', '价格', '邮费', '购买人数', '所属')
@@ -26,8 +26,8 @@ def get_goods(goods_keywords, webs):
     except AssertionError:
         error_message('expect to receive a list')
     key_words = '+'.join(goods_keywords)
-    thread_pool.build_thread(key_words, webs=webs)
-    print_goods(thread_pool.export_date())
+    threads.build(key_words, webs)
+    print_goods(threads.goods)
 
 
 def print_goods(search_result):
@@ -49,7 +49,7 @@ def print_goods(search_result):
 
 
 def sort_by_money(search_result):
-    result = sorted(search_result, key=itemgetter('sales', 'price'), reverse=True)
+    result = sorted(search_result, key=itemgetter('price'), reverse=True)
     return result
 
 
@@ -65,7 +65,8 @@ def open_detail_page(filtered_goods):
     print(colorful_text('use \'control + c\' to exit.', Fore.RED))
     try:
         index = input('goods index: ')
-        result_goods = filter(get_target_goods(index.split(',')), filtered_goods)
+        result_goods = filter(get_target_goods(
+            index.split(',')), filtered_goods)
         goods_list = [goods for goods in result_goods]
 
         if len(goods_list):
