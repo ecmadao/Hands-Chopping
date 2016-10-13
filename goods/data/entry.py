@@ -41,7 +41,7 @@ def print_goods(search_result):
     goods_table = PrettyTable(TABLE_TITLE)
     for index, goods in enumerate(search_result):
         goods["index"] = index
-        goods_row = [goods[item] for item in ITEM_KEY]
+        goods_row = [goods.get(item, None) for item in ITEM_KEY]
         goods_table.add_row(goods_row)
     print(colorful_text('ready to hands chopping?', Fore.CYAN))
     print(goods_table)
@@ -62,7 +62,7 @@ def open_detail_page(filtered_goods):
     """
     print(colorful_text('which do you prefer? type it\'s index', Fore.MAGENTA))
     print(colorful_text('if many, use \',\' to split them', Fore.MAGENTA))
-    print(colorful_text('use \'control + c\' to exit.', Fore.RED))
+    print(colorful_text('use \'control + c\' to exit.', Fore.MAGENTA))
     try:
         index = input('goods index: ')
         result_goods = filter(get_target_goods(

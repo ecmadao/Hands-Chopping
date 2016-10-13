@@ -34,7 +34,6 @@ class JdSpider(BaseSpider):
                     'intro': div.xpath('./a/@title')[0],
                     'price': float(li.xpath('.//div[@class="p-price"]')[0]
                                    .xpath('./strong/i/text()')[0].strip()),
-                    'delivery': 'none',
                     'sales': li.xpath('.//div[@class="p-commit"]')[0]
                     .xpath('./strong/a/text()')[0].strip(),
                     'belong': colorful_text('京东', Fore.CYAN)
