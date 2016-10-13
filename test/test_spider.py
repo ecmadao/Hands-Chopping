@@ -24,15 +24,15 @@ def get_goods(keywords, web):
     return fetch_goods(keywords, web)
 
 
-def test_taobao():
-    goods = test_get_goods()
-    result = fetch_goods(goods, 'taobao')
-    assert result is not None
-    assert len(result) > 1
-
-
-def test_jd():
-    goods = test_get_goods()
-    result = fetch_goods(goods, 'jd')
-    assert result is not None
-    assert len(result) > 1
+# def test_taobao():
+#     goods = test_get_goods()
+#     result = fetch_goods(goods, 'taobao')
+#     assert result is not None
+#     assert len(result) > 1
+#
+#
+# def test_jd():
+#     goods = test_get_goods()
+#     result = fetch_goods(goods, 'jd')
+#     assert result is not None
+#     assert len(result) > 1
