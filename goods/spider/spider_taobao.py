@@ -32,20 +32,24 @@ class TaobaoSpider(BaseSpider):
         return self.__data_parser__(json_result)
 
     def __data_parser__(self, data):
-        if data['mods']['itemlist']['data']['auctions']:
-            search_results = data['mods']['itemlist']['data']['auctions']
-            return [{
-                    'intro': result["raw_title"],
-                    'price': float(result["view_price"]),
-                    'delivery': colorful_text(result["view_fee"], Fore.RED)
-                    if float(result["view_fee"]) > 0 else result["view_fee"],
-                    'sales': int(result["view_sales"].split('人')[0]),
-                    'belong': colorful_text("天猫", Fore.CYAN)
-                    if result["shopcard"] and result["shopcard"].get('isTmall', False) else "淘宝",
-                    'url': result["detail_url"]
-                    } for result in search_results]
-        error('Ops, get no goods..')
-        return []
+        try:
+            if data['mods']['itemlist']['data']['auctions']:
+                search_results = data['mods']['itemlist']['data']['auctions']
+                return [{
+                        'intro': result["raw_title"],
+                        'price': float(result["view_price"]),
+                        'delivery': colorful_text(result["view_fee"], Fore.RED)
+                        if float(result["view_fee"]) > 0 else result["view_fee"],
+                        'sales': int(result["view_sales"].split('人')[0]),
+                        'belong': colorful_text("天猫", Fore.CYAN)
+                        if result.get('shopcard', {}).get('isTmall', False) else "淘宝",
+                        'url': result["detail_url"]
+                        } for result in search_results]
+            error('Ops, get no goods..')
+            return []
+        except KeyError:
+            error('Ops, some key error happened..')
+            return []
 
     @property
     def goods(self):
